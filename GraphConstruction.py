@@ -57,9 +57,10 @@ import os
 
 if __name__ == '__main__':
 
-    if len(sys.argv):
+    if len(sys.argv) < 2:
         sys.stdout.write("Please provide at least two arguments: -TypeTag filename.txt")
         sys.exit(2)
 
-    ArgPointer = 0
-
+    for x in range(len(sys.argv)):
+        if sys.argv[x].startswith('-'):
+            pass
