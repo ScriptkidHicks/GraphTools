@@ -50,3 +50,16 @@ Here's an example:
  -2  , INF ,  0  ,  1
   7  ,  8  , INF ,  0
 """
+
+import sys
+import pickle
+import os
+
+if __name__ == '__main__':
+
+    if len(sys.argv):
+        sys.stdout.write("Please provide at least two arguments: -TypeTag filename.txt")
+        sys.exit(2)
+
+    ArgPointer = 0
+
