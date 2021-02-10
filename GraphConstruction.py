@@ -12,7 +12,7 @@ file, you can implement the other tools on that file at your
 choosing. Hope this tool helps students everywhere.
 
 First File Format:
-specified by the -edges tag
+specified by the -EdgeList tag
 The first line of your file should be the number of edges
 in the graph
 the remaining lines of the file should be formatted as
@@ -57,10 +57,28 @@ import os
 
 if __name__ == '__main__':
 
+    Weighted = True
+    Directed = True
+
+    Matrix = False
+    EdgeList = False
+
+
     if len(sys.argv) < 2:
         sys.stdout.write("Please provide at least two arguments: -TypeTag filename.txt")
         sys.exit(2)
 
     for x in range(len(sys.argv)):
         if sys.argv[x].startswith('-'):
-            pass
+            if sys.argv[x].lower() == "-matrix":
+                Matrix = True
+            elif sys.argv[x].lower() == "-edgelist":
+                EdgeList = True
+            elif sys.argv[x].lower() == "-weight=false":
+                Weighted = False
+            elif sys.argv[x].lower() == "-directed=false":
+                Directed = False
+
+    if Matrix == EdgeList:
+        sys.stdout.write("You must select either Matrix or Edgelist, but neither or both.")
+        sys.exit(2)
