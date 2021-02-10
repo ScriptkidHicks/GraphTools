@@ -27,4 +27,26 @@ Here's an example:
 Note: you can override the weight requirement by using the tag
 -weight=False, and you can specify that it is an undirected graph
 by using the tag -directed=False
+
+Second File Format:
+specified by the -matrix tag (not compatible with the -directed=False
+tag
+The first line should be a single number that is the number of
+vertecies in the graph. If you give an inaccurate number of nodes
+the tool will crash or not intake your entire graph. The remainder
+of the file should be lines representing rows, and should be
+separated by commas. The vertical line (left hand) represents 'from'
+and the horizontal (top) represents 'to'. The nodes will be assigned
+values on a scale from 0 to n, where n in the integer you passed in
+less one. If there is no edge between two nodes you can Leave either
+None or INF in that slot. This is assumed to be a weighted graph.
+It is also assumed that there is a maximum of 1 edge between 2 points,
+and that nodes do not have edges to themselves.
+Here's an example:
+
+4
+  0  ,  5  , INF , -1
+  3  ,  0  , INF , -3
+ -2  , INF ,  0  ,  1
+  7  ,  8  , INF ,  0
 """
