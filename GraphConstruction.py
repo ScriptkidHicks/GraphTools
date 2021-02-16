@@ -53,16 +53,20 @@ Here's an example:
 
 import sys
 import pickle
-import os
+from GraphClass import Node, Edge, Graph
+
 
 if __name__ == '__main__':
 
     Weighted = True
     Directed = True
+    Rename = False
 
     Matrix = False
     EdgeList = False
 
+    RenameName = None
+    FileName = None
 
     if len(sys.argv) < 2:
         sys.stdout.write("Please provide at least two arguments: -TypeTag filename.txt")
@@ -78,6 +82,26 @@ if __name__ == '__main__':
                 Weighted = False
             elif sys.argv[x].lower() == "-directed=false":
                 Directed = False
+            elif sys.argv[x].lower() == '-r':
+                Rename = True
+            else:
+                sys.stdout.write(f" '{sys.argv[x]}' does not appear to be a valid tag\n"
+                                 f"Valid tags are: -r, -Matrix, -EdgeList, -Weight=False, -Directed=False")
+                sys.exit(2)
+        elif sys.argv[x].endswith(".txt"):
+            FileName = sys.argv[x]
+        else:
+            if not Rename:
+                sys.stdout.write("It appears you have attempted to provide a new name for the pickle file\n"
+                                 "without using the -r tag. Please use the -r tag if you intend to rename.")
+                sys.exit(2)
+            elif FileName is None:
+                sys.stdout.write("It appears you have provided the name of the pickle file before providing\n"
+                                 "the name of the txt file to be examined. Please use the following order:\n"
+                                 "python(version) GraphConstruction.py tag(s) (text file name) (pickle file name)")
+                sys.exit(2)
+            else:
+                RenameName = sys.argv[x]
 
     if Matrix == EdgeList:
         sys.stdout.write("You must select either Matrix or Edgelist, but neither or both.")
